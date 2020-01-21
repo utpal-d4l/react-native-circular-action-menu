@@ -56,8 +56,9 @@ export default class ActionButton extends Component {
   }
 
   getActionContainerStyle() {
-    const {alignItems, justifyContent} = alignMap[this.props.position];
-    return [styles.overlay, styles.actionContainer, {
+    const { alignItems, justifyContent } = alignMap[this.props.position];
+    const { offsetY } = this.props
+    return [styles.overlay, styles.actionContainer, !!offsetY && { paddingTop: offsetY, paddingBottom: offsetY }, {
       alignItems,
       justifyContent,
     }];
