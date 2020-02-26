@@ -2,6 +2,7 @@ import React, {
   Component,
 } from 'react';
 import {
+  DeviceEventEmitter,
   StyleSheet,
   Text,
   View,
@@ -47,8 +48,15 @@ export default class ActionButton extends Component {
     this.timeout = null;
   }
 
+  componentDidMount() {
+    this.backListener = DeviceEventEmitter.addListener('HANDLE_FLOATING_ACTION_BACK', () => {
+      this.animateButton();
+    })
+  }
+
   componentWillUnmount() {
     clearTimeout(this.timeout);
+    this.backListener.remove();
   }
 
   getActionButtonStyle() {
