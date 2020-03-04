@@ -42,17 +42,10 @@ export default class ActionButtonItem extends Component {
                 outputRange: [0, 1],
               }) },
           ]
-        }]}
+        }, this.props.buttonStyle]}
       >
-        <TouchableOpacity style={{flex:1}} activeOpacity={this.props.activeOpacity || 0.85} onPress={this.props.onPress}>
-          <View
-            style={[styles.actionButton,{
-              width: this.props.size,
-              height: this.props.size,
-              borderRadius: this.props.size / 2,
-              backgroundColor: this.props.buttonColor,
-            }]}
-          >
+        <TouchableOpacity style={styles.actionButtonWrapper} activeOpacity={this.props.activeOpacity || 0.85} onPress={this.props.onPress}>
+          <View>
             {this.props.children}
           </View>
         </TouchableOpacity>
@@ -70,12 +63,14 @@ ActionButtonItem.propTypes = {
   children: PropTypes.node.isRequired,
   startDegree: PropTypes.number,
   endDegree: PropTypes.number,
+  buttonStyle: PropTypes.object
 };
 
 ActionButtonItem.defaultProps = {
   onPress: () => {},
   startDegree: 0,
-  endDegree: 720
+  endDegree: 720,
+  buttonStyle: null
 };
 
 const styles = StyleSheet.create({
@@ -94,4 +89,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     position: 'absolute',
   },
+  actionButtonWrapper: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center'
+  }
 });
