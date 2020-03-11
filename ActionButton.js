@@ -194,7 +194,7 @@ export default class ActionButton extends Component {
 
           <View
             pointerEvents="box-none"
-            style={this.getActionContainerStyle()}
+            style={[this.getActionContainerStyle(), {zIndex: button.props.zIndex}]}
           >
             <ActionButtonItem
               key={index}
